@@ -1,0 +1,25 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    //Esto demuestra que react solo hace el rerender de lo que cambia en el jsx. Es decir, no actualiza todo el DOM.
+    //En este caso solamente hace rerender del valor del input, pero no del input en si mismo.
+    //Esto lo hace comparando los DOMs de la ultima vez con el de la proxima. Hace un diff y actualiza solo lo que cambio.
+    function tick() {
+      const time = new Date().toLocaleTimeString()
+      const element = (
+        <>
+          <input value={time} />
+          <input value={time} />
+        </>
+      )
+      ReactDOM.render(element, rootElement)
+    }
+
+    setInterval(tick, 1000)
+  </script>
+</body>
